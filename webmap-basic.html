@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Load a basic WebMap | Sample | ArcGIS Maps SDK for JavaScript 4.33</title>
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css" />
+
+    <script src="https://js.arcgis.com/4.33/"></script>
+
+    <script type="module">
+      const [MapView, WebMap] = await $arcgis.import([
+        "@arcgis/core/views/MapView.js",
+        "@arcgis/core/WebMap.js",
+      ]);
+
+      /************************************************************
+       * Creates a new WebMap instance. A WebMap must reference
+       * a PortalItem ID that represents a WebMap saved to
+       * arcgis.com or an on-premise portal.
+       *
+       * To load a WebMap from an on-premise portal, set the portal
+       * url with esriConfig.portalUrl.
+       ************************************************************/
+      var webmap = new WebMap({
+        portalItem: {
+          // autocasts as new PortalItem()
+          id: "e50018f23aaf4961aee46e9aa7403a9f",
+        },
+      });
+
+      /************************************************************
+       * Set the WebMap instance to the map property in a MapView.
+       ************************************************************/
+      const view = new MapView({
+        map: webmap,
+        container: "viewDiv",
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
